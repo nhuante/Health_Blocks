@@ -111,7 +111,7 @@ async function authenticateNutritionix() {
 }
 
 Blockly.JavaScript['setup_nutritionix'] = function(block) {
-  var code = `authenticateNutritionix();\n`;
+  var code = `await authenticateNutritionix();\n`;
   return code;
 };
 
