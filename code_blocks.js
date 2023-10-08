@@ -88,33 +88,60 @@ Blockly.Blocks['setup_nutritionix'] = {
   }
 };
 
-Blockly.JavaScript['setup_nutritionix'] = function(block) {
-  var code =  `
-  (async function() {
-    try {
-      const response = await fetch('https://trackapi.nutritionix.com/v2/auth/signin', {
-        method: 'POST', 
-        headers: {
-          'x-app-id': '3744e908',
-          'x-app-key': '746b59989e2f8afcc148bd5e17873b3d'
-        }, 
-      });
-  
-      if (response.ok) {
-        // authentication succeessful, you make now make API requests
-        console.log('authentication successful');
-      } else {
-        console.error('authentication unsuccessful');
-      } 
-    } catch (error) {
-        // handle any network or other errors
-        console.error('Error: ', error);
-      }
-  })();
-  `;
+async function authenticateNutritionix() {
+  try {
+    const response = await fetch('https://trackapi.nutritionix.com/v2/auth/signin', {
+      method: 'POST',
+      headers: {
+        'x-app-id': '3744e908',
+        'x-app-key': '746b59989e2f8afcc148bd5e17873b3d'
+      },
+    });
 
+    if (response.ok) {
+      // authentication successful, you can now make API requests
+      console.log('authentication successful');
+    } else {
+      console.error('authentication unsuccessful');
+    }
+  } catch (error) {
+    // handle any network or other errors
+    console.error('Error: ', error);
+  }
+}
+
+Blockly.JavaScript['setup_nutritionix'] = function(block) {
+  var code = `authenticateNutritionix();\n`;
   return code;
 };
+
+// Blockly.JavaScript['setup_nutritionix'] = async function(block) {
+//   var code =  `
+//   (async function() {
+//     try {
+//       const response = await fetch('https://trackapi.nutritionix.com/v2/auth/signin', {
+//         method: 'POST', 
+//         headers: {
+//           'x-app-id': '3744e908',
+//           'x-app-key': '746b59989e2f8afcc148bd5e17873b3d'
+//         }, 
+//       });
+  
+//       if (response.ok) {
+//         // authentication succeessful, you make now make API requests
+//         console.log('authentication successful');
+//       } else {
+//         console.error('authentication unsuccessful');
+//       } 
+//     } catch (error) {
+//         // handle any network or other errors
+//         console.error('Error: ', error);
+//       }
+//   })();
+//   `;
+
+//   return code;
+// };
 
 Blockly.Blocks['search_foods'] = {
   init: function() {
