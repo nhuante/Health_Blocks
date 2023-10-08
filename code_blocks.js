@@ -75,6 +75,8 @@ Blockly.JavaScript['exercise_dropdown'] = function(block) {
 };
 
 Blockly.Blocks['setup_nutritionix'] = {
+  // api id : 3744e908
+  // api key : 746b59989e2f8afcc148bd5e17873b3d
   init: function() {
     this.appendDummyInput()
         .appendField("set up Nutritionix API with credentials");
@@ -87,9 +89,27 @@ Blockly.Blocks['setup_nutritionix'] = {
 };
 
 Blockly.JavaScript['setup_nutritionix'] = function(block) {
-  var code =  'var app_id = "d2676aeb";\n' +
-              'var app_key = "71a81a0317f71223d497357fad94e222";\n';
-  return code;
+  // var code =  'var app_id = "d2676aeb";\n' +
+  //             'var app_key = "71a81a0317f71223d497357fad94e222";\n';
+
+  fetch('https://trackapi.nutritionix.com/v2/auth/signin', {
+    method: 'POST', 
+    headers: {
+      'x-app-id': '3744e908',
+      'x-app-key': '746b59989e2f8afcc148bd5e17873b3d'
+    }, 
+  })
+  .then(response => {
+    // hande the authenticatin response
+    if (response.ok) {
+      // authentication succeessful, you make now make API requests
+      var output = 'authentication successful\n';
+    }
+    else {
+      var output = 'authentication unsuccessful\n';
+    }
+  })
+  return output;
 };
 
 Blockly.Blocks['search_foods'] = {
