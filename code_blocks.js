@@ -111,7 +111,7 @@ Blockly.JavaScript['setup_nutritionix'] = function(block) {
   };
   `;
 
-  return output;
+  return code;
 };
 
 Blockly.Blocks['search_foods'] = {
