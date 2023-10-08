@@ -90,7 +90,7 @@ Blockly.Blocks['setup_nutritionix'] = {
 
 Blockly.JavaScript['setup_nutritionix'] = function(block) {
   var code =  `
-  const responde = await fetch('https://trackapi.nutritionix.com/v2/auth/signin', {
+  const response = await fetch('https://trackapi.nutritionix.com/v2/auth/signin', {
     method: 'POST', 
     headers: {
       'x-app-id': '3744e908',
